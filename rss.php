@@ -50,13 +50,6 @@ class JDocumentRendererRSS extends JDocumentRenderer
   
 		$data = $this->_doc;
 
-
-/*   // var_dump($data);
-echo $this->items[0];
-die;*/
-
-
-
 		$uri = JUri::getInstance();
 		$url = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
 		$syndicationURL = JRoute::_('&format=feed&type=rss');
@@ -90,11 +83,13 @@ die;*/
 		$feed .= "		<title>" . $feed_title . "</title>\n";
 		$feed .= "		<description><![CDATA[" . $data->description . "]]></description>\n";
 		$feed .= "		<link>" . str_replace(' ', '%20', $url . $datalink) . "</link>\n";
+// Яндекс 
 		$feed .= "		<image>\n";
 		$feed .= "		  <url>http://www.vechor.ru/vechor.png</url>\n";
 		$feed .= "		  <title>ВЕЧЕРНИЙ ОРЁЛ</title>\n";
 		$feed .= "  		<link>" . str_replace(' ', '%20', $url . $datalink) . "</link>\n";
 		$feed .= "		</image>\n";
+// конец яндекса
 		$feed .= "		<lastBuildDate>" . htmlspecialchars($now->toRFC822(true), ENT_COMPAT, 'UTF-8') . "</lastBuildDate>\n";
 		$feed .= "		<generator>" . $data->getGenerator() . "</generator>\n";
 		$feed .= '		<atom:link rel="self" type="application/rss+xml" href="' . str_replace(' ', '%20', $url . $syndicationURL) . "\"/>\n";
@@ -222,9 +217,9 @@ die;*/
 			}
 
 			$feed .= "			<description><![CDATA[" . $this->_relToAbs($data->items[$i]->description) . "]]></description>\n";
-			//Яндекс
+// яндекс
 			$feed .= "			<yandex:full-text><![CDATA[" . $this->_relToAbs($data->items[$i]->description) . "]]></yandex:full-text>\n";
-
+// конец яндекса	
 			if ($data->items[$i]->authorEmail != "")
 			{
 				$feed .= "			<author>"
@@ -247,7 +242,7 @@ die;*/
 						$feed .= "			<category>" . htmlspecialchars($cat, ENT_COMPAT, 'UTF-8') . "</category>\n";
 					}*/
 					
-					//грязнейший хак. т.к. фид идёт с тремя категориями (избранное, ЭКОНОМИКА/ОБЩЕСТВО/etc, тематика) берём среднюю.
+//грязнейший хак. т.к. фид идёт с тремя категориями (избранное, ЭКОНОМИКА/ОБЩЕСТВО/etc, тематика) берём среднюю.
           $feed .= "			<category>" . htmlspecialchars($data->items[$i]->category[1], ENT_COMPAT, 'UTF-8') . "</category>\n";
 				}
 				else

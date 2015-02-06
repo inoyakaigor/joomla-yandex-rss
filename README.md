@@ -1,7 +1,8 @@
-joomla-yandex-rss
-=
-Joomla 3.3.6 RSS рatch for Yandex.News 
+### Joomla-yandex-rss
+Joomla 3.3.6 RSS рatch for Yandex.News
 
-About
-=
-https://inoyakaigor.ru/blog/78
+### How to use 
+just copy into folder
+
+### About
+[look at my blog](https://inoyakaigor.ru/blog/78)
